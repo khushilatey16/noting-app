@@ -95,6 +95,18 @@ app.put("/notes/:id",async(req,res)=>{
     })
 })
 
+//DELETE REQUEST
+app.delete("/notes/:id",async(req,res)=>{
+    const {id} = req.params;
+
+    await Note.deleteOne({_id: id})
+
+    res.json({
+        success:true,
+        message:"notes deleted successfully",
+        data:null
+    })
+})
 
 app.listen(PORT,()=>{
     console.log(`server is running on port ${PORT}`);
