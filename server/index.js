@@ -1,8 +1,9 @@
 import express from 'express';
 import cors from 'cors';
-import mongoose, {model,Schema} from 'mongoose';
+import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 dotenv.config();
+import Note from './models/Node.js';
 
 const app = express();
 app.use(cors()); // allow every request from anywhere
@@ -18,16 +19,6 @@ connectDB();
 
 const PORT = 5000;
 
-//schema
-const noteSchema = new Schema({
-    title:String,
-    content:String,
-    category:String
-})
-
-const Note = model("Note",noteSchema);
-
-
 app.get("/health",(req,res)=>{//for checking whether our server is working properly with api or not
     res.json({
         success:true,
@@ -39,6 +30,30 @@ app.get("/health",(req,res)=>{//for checking whether our server is working prope
 //POST REQUEST
 app.post("/notes",async(req,res)=>{
     const {title , content , category} = req.body; //reading title content from request body
+
+if(!title){
+    return res.json({
+        success:false,
+        message:"title is required",
+        data:null
+    })
+}
+
+if(!content){
+    return res.json({
+        success:false,
+        message:"content is required",
+        data:null
+    })
+}
+
+if(!category){
+    return res.json({
+        success:false,
+        message:"category is required",
+        data:null
+    })
+}
 
   const newNote = await Note.create({
     "title":title,
@@ -68,9 +83,8 @@ app.get("/notes",async (req,res)=>{
 app.get("/notes/:id",async(req,res)=>{
      const {id} = req.params;
 
-     const note = await Note.findOne({
-        _id: id
-     })
+     const note = await Note.findById(id);
+
      res.json({
         success:true,
         message:"notes fetched succefully",
