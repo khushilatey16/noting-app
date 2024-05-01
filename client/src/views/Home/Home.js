@@ -6,7 +6,7 @@ function Home() {
     const [notes, setNotes] = useState([]); // for storing notes
 
     const loadNotes = async () => {
-        const response = await axios.get('http://localhost:5000/notes');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/notes`);
         console.log(response.data.data);
         setNotes(response.data.data);
     };
