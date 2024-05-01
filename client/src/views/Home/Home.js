@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Home.css';
+import NoteCard from '../../components/NoteCard/NoteCard';
 
 function Home() {
     const [notes, setNotes] = useState([]); // for storing notes
 
     const loadNotes = async () => {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/notes`);
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/notes`)
+
         console.log(response.data.data);
         setNotes(response.data.data);
     };
@@ -17,18 +19,12 @@ function Home() {
 
     return (
         <div>
-            <h1>Home</h1>
-            {/* You can render the notes here */}
+            <h1 className='app-header'>Home</h1>
 
             {
-                notes.map((note,index)=>{
-                    return(
-                        <div>
-                            <h3>{note.title}</h3> 
-                            <p>{note.content}</p>
-                            <span>{note.category}</span>
-                        </div>
-                    )
+                notes.map((note)=>{
+                    const{_id,title,content,category}=note;
+                    return(<NoteCard key={_id} _id={_id} title={title} content={content} category={category} />)
                 })
             }
         </div>

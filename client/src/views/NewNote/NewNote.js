@@ -3,7 +3,7 @@ import './NewNote.css'
 
 function NewNote() {
   return (
-<h1>NewNote</h1>
+<h1 className='app-header'>NewNote</h1>
   )
 }
 
