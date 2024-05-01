@@ -6,8 +6,30 @@
     box-shadow: 0 0 10px rgb(0,0,0,0.1);
     cursor: pointer;
     background-color: #fff;
+    position: relative;
+    margin-top: 20px;
 
 }
 .note-card:hover{
     box-shadow: 0 0 10px 0 rgb(0,0,0,0.2);
+}
+
+.note-card-category{
+    position: absolute;
+    background-color: rgb(238, 166, 181);
+    color: black;
+    padding: 5px 20px;
+    margin: 5px;
+    border-radius: 15px;
+    top: 0;
+    right: 20px;
+}
+
+.delete-icon{
+    height: 30px;
+    position: absolute;
+    bottom: 0;
+    right: 30px;
+    top: 68px;
+
 }
