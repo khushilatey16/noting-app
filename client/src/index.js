@@ -1,22 +1,35 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from "react-router-dom";
+import ReactDOM from 'react-dom/client';
 import './index.css';
-import { Toaster } from 'react-hot-toast';
-import Home from './views/Home/Home';
+import {
+  createBrowserRouter,
+  RouterProvider
+} from "react-router-dom";
 import NewNote from './views/NewNote/NewNote';
+import Home from './views/Home/Home';
 import UpdateNote from './views/UpdateNote/UpdateNote';
+import { Toaster } from 'react-hot-toast';
 
-const root = document.getElementById('root');
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />
+  },
+  {
+    path: "/new-note",
+    element: <NewNote />
+  },
+  {
+    path: "/update/:id",
+    element: <UpdateNote />
+  }
+]);
 
-ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Toaster />
-      <Home />
-      <NewNote />
-      <UpdateNote />
-    </BrowserRouter>
-  </React.StrictMode>,
-  root
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(<>
+<Toaster />
+<RouterProvider router={router} />
+</>
 );
