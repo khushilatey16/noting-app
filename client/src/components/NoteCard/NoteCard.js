@@ -3,6 +3,8 @@ import "./NoteCard.css";
 import DeleteIcon from "./delete.png";
 import axios from "axios";
 import toast from "react-hot-toast";
+import UpdateIcon from "./edit.png";
+import { Link } from "react-router-dom";
 
 function NoteCard({ _id, title, content, category,loadNotes }) {
   // DELETE API CALLING
@@ -27,6 +29,12 @@ function NoteCard({ _id, title, content, category,loadNotes }) {
         className="delete-icon"
         onClick={deleteNote}
       />
+      <Link to={`/update/${_id}`}>
+        <img
+        src={UpdateIcon}
+        alt="Update-icon"
+        className="Update-icon"/>
+        </Link>
     </div>
   );
 }

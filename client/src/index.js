@@ -8,6 +8,8 @@ import {
 import NewNote from './views/NewNote/NewNote';
 import Home from './views/Home/Home';
 import toast ,{Toaster} from 'react-hot-toast';
+import UpdateNote from './views/UpdateNote/UpdateNote';
+
 
 const router = createBrowserRouter([
   {
@@ -17,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "/new",
     element: <NewNote />
+  },
+  {
+    path: "/update/:id",
+    element: <UpdateNote />
   }
 ])
 
